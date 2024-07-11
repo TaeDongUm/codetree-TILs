@@ -4,6 +4,9 @@
 |---|---|---|
 |[Novice Mid / 정렬 / 객체](https://www.codetree.ai/missions?missionId=5)|30xp|![쉬움][easy]|
 
+개선 사항
+- 처음에는 입력값들 전부를 Weather 객체에 넣고 sort 했지만 "Rain"에 해당하는 입력값 중 가장 빠른 일수를 저장하기 위한 변수 선언 후 이용했음
+
 
 
 
