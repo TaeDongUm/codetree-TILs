@@ -34,7 +34,7 @@ public class Main {
                     
                     for(int k=i+1;k<map.length-1;k++){
                         for(int l=j+1;l<map[0].length-1;l++){
-                            if(map[i][j].charAt(0) != map[k][l].charAt(0)){
+                            if(map[i][j].charAt(0) != map[k][l].charAt(0) && map[k][l].charAt(0) != map[map.length-1][map[0].length-1].charAt(0)){
                                 count++;
                             }
                         }
