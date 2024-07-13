@@ -5,13 +5,31 @@ public class Main {
         Scanner sc =new Scanner(System.in);
         String a = sc.next();
         String newStr="";
-        for(int i=0;i<a.length();i++){            
-            if(a.charAt(i) == '0'){
-                StringBuilder sb = new StringBuilder(a);
-                sb.setCharAt(i, '1');
-                newStr = sb.toString();
-                break;
+        boolean flag=false;
+        for(int i=0;i<a.length();i++){
+            if(a.charAt(i)=='0'){
+                flag = true;
+            }
+        }
+        if(flag){
+            for(int i=0;i<a.length();i++){            
+                if(a.charAt(i) == '0'){
+                    StringBuilder sb = new StringBuilder(a);
+                    sb.setCharAt(i, '1');
+                    newStr = sb.toString();
+                    break;
 
+                }
+            }
+        }else{
+            for(int i=a.length()-1;i>0;i--){            
+                if(a.charAt(i) == '1'){
+                    StringBuilder sb = new StringBuilder(a);
+                    sb.setCharAt(i, '0');
+                    newStr = sb.toString();
+                    break;
+
+                }
             }
         }
         int sum=0;
