@@ -14,8 +14,9 @@ public class Main {
         }
         bfs(0, input,0);
         if(answer == Integer.MIN_VALUE) System.out.println(-1);
-        System.out.println(answer);
-
+        else{
+            System.out.println(answer);
+        }
 
     }
     public static void bfs(int depth, int[] input, int idx){
