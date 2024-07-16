@@ -1,62 +1,34 @@
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        int N = Integer.parseInt(br.readLine());
+        int[][] coinsMap = new int[N][N];
 
-        int N = scanner.nextInt();
-        int[][] grid = new int[N][N];
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                grid[i][j] = scanner.nextInt();
+        for(int i=0;i<N;i++){
+            st = new StringTokenizer(br.readLine());
+            for(int j=0;j<N;j++){
+                coinsMap[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        int maxCoins = 0;
+        LinkedList<Integer> maxCoins = new LinkedList<>();
 
-        List<int[]> positions = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N - 2; j++) {
-                positions.add(new int[]{i, j});
-            }
-        }
-
-        for (int i = 0; i < positions.size(); i++) {
-            int[] first = positions.get(i);
-            for (int j = i + 1; j < positions.size(); j++) {
-                int[] second = positions.get(j);
-
-                if (!isOverlapping(first, second)) {
-                    int coins = countCoins(grid, first) + countCoins(grid, second);
-                    maxCoins = Math.max(maxCoins, coins);
+        for(int i=0;i<N;i++){
+            int coins=0;
+            for(int j=0;j<N;j++){
+                if(j+2 < N){
+                    coins += coinsMap[i][j] + coinsMap[i][j+1] + coinsMap[i][j+2];
+                    maxCoins.add(coins);
+                    coins=0;
                 }
             }
         }
-
-        System.out.println(maxCoins);
-    }
-
-    private static int countCoins(int[][] grid, int[] pos) {
-        int coins = 0;
-        int row = pos[0];
-        int col = pos[1];
-        for (int i = col; i < col + 3; i++) {
-            coins += grid[row][i];
-        }
-        return coins;
-    }
-
-    private static boolean isOverlapping(int[] pos1, int[] pos2) {
-        int row1 = pos1[0];
-        int col1 = pos1[1];
-        int row2 = pos2[0];
-        int col2 = pos2[1];
-
-        if (row1 != row2) {
-            return false;
-        }
-  
-        return (col1 <= col2 && col2 <= col1 + 2) || (col2 <= col1 && col1 <= col2 + 2);
+        Collections.sort(maxCoins);
+        int answer = maxCoins.get(maxCoins.size()-1) + maxCoins.get(maxCoins.size()-2);
+        System.out.println(answer);
     }
 }
