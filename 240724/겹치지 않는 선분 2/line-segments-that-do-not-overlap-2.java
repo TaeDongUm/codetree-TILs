@@ -20,6 +20,7 @@ public class Main {
 
         }
         int answer=N;
+        
 
         for(int i=0;i<list.size();i++){
             float start1 = list.get(i)[0];
@@ -32,12 +33,11 @@ public class Main {
                 float start2 = list.get(j)[0];
                 float end2 = list.get(j)[1];
                 float inc2 = list.get(j)[2];
-                float compare = (inc2*start2 + inc1*start1)/(inc2-inc1);
+                float compare = (inc2*start2 - inc1*start1)/(inc2-inc1);
                 if(start1 <=compare && compare <= end1 ) isTrue = false;
             }
             if(!isTrue) answer--;
-        }
-        answer--;
+        }        
         System.out.println(answer);
         
     }
