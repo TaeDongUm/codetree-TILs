@@ -12,7 +12,7 @@ public class Main {
             float[] value = new float[3];
             float x1 = Float.parseFloat(st.nextToken());
             float x2 = Float.parseFloat(st.nextToken());
-            float incli = (-1)/(x1-x2);            
+            float incli = (float)(-1)/(x1-x2);            
             value[0] = x1;
             value[1] = x2;
             value[2] = incli;
