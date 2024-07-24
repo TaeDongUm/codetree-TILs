@@ -26,13 +26,15 @@ public class Main {
             float end1 = list.get(i)[1];
             float inc1 = list.get(i)[2];
             // (inc2-inc1)*x = (inc2*start2+inc1*start1)
+            boolean isTrue = true;
             for(int j=i+1;j<list.size();j++){
                 float start2 = list.get(j)[0];
                 float end2 = list.get(j)[1];
                 float inc2 = list.get(j)[2];
                 float compare = (inc2*start2 + inc1*start1)/(inc2-inc1);
-                if(start1 <=compare && compare <= end1 ) answer--;
+                if(start1 <=compare && compare <= end1 ) isTrue = false;
             }
+            if(!isTrue) answer--;
         }
         answer--;
         System.out.println(answer);
