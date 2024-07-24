@@ -27,7 +27,8 @@ public class Main {
             float inc1 = list.get(i)[2];
             // (inc2-inc1)*x = (inc2*start2+inc1*start1)
             boolean isTrue = true;
-            for(int j=i+1;j<list.size();j++){
+            for(int j=0;j<list.size();j++){
+                if(i==j) continue;
                 float start2 = list.get(j)[0];
                 float end2 = list.get(j)[1];
                 float inc2 = list.get(j)[2];
