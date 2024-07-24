@@ -25,6 +25,7 @@ public class Main {
             int o = i%10;
             
             if(h == t || t==o || o==h) continue;
+            if(h == 0 || t==0 || o==0) continue;
             boolean flag = true;
             for(int j=0;j<list.size();j++){
                 int oneCount =0;
