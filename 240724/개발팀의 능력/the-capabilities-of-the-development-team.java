@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main {
     static int min = Integer.MAX_VALUE;
+    static boolean isTrue = true;
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -15,7 +16,12 @@ public class Main {
         int[] newTeam= new int[5];
         int[] visited = new int[5];
         cal(ability, visited, 0, newTeam);
-        System.out.println(min);
+        if(isTrue){
+            System.out.println(min);
+
+        }else{
+            System.out.println(-1);
+        }
 
 
     }
@@ -30,7 +36,11 @@ public class Main {
              Score[1] = team2;
              Score[2] = team3;
              Arrays.sort(Score);
-             if(min > Score[2] - Score[0]) min = Score[2] - Score[0];
+             if(min > Score[2] - Score[0]){
+                min = Score[2] - Score[0];
+                isTrue = true;
+             } 
+             
              return;
              
         }
