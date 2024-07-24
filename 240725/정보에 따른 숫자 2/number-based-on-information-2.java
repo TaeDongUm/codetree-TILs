@@ -9,14 +9,18 @@ public class Main {
         int a = Integer.parseInt(st.nextToken());
         int b = Integer.parseInt(st.nextToken());
         
-        LinkedList<String[]> list = new LinkedList<>();
+        LinkedList<Integer> listS = new LinkedList<>();
+        LinkedList<Integer> listN = new LinkedList<>();
 
         for(int i=0;i<T;i++){
             st = new StringTokenizer(br.readLine());
-            String[] input = new String[2];
-            input[0] = st.nextToken();
-            input[1] = st.nextToken();
-            list.add(input);
+            char tmpChar = st.nextToken().charAt(0);
+            int tmpIdx = Integer.parseInt(st.nextToken());
+            if(tmpChar == 'S'){
+                listS.add(tmpIdx);
+            }else{
+                listN.add(tmpIdx);
+            }
         }
 
         // Collections.sort(list, new Comparator<String[]>(){
@@ -34,16 +38,15 @@ public class Main {
             int nx = i;
             int d1 = Integer.MAX_VALUE;
             int d2 = Integer.MAX_VALUE;
-            for(int j=0;j<list.size();j++){
-                if(list.get(j)[0].equals("S")){
-                    int tmp = Math.abs(i - Integer.parseInt(list.get(j)[1]));
-                    if(d1 > tmp) d1 = tmp;
-                }
-                if(list.get(j)[0].equals("N")){
-                    int tmp = Math.abs(i - Integer.parseInt(list.get(j)[1]));
-                    if(d2 > tmp) d2 = tmp;
-                }
+            for(int j=0;j<listS.size();j++){
+                int tmp = Math.abs(i - listS.get(j));
+                if(d1 > tmp) d1 = tmp;
             }
+            for(int j=0;j<listN.size();j++){
+                int tmp = Math.abs(i - listN.get(j));
+                if(d2 > tmp) d2 = tmp;
+            }
+
             if(d1 <= d2) answer++;
         }
 
