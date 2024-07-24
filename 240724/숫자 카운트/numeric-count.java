@@ -2,80 +2,61 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
+        StringTokenizer st;
+
         int N = Integer.parseInt(br.readLine());
-        List<Question> questions = new ArrayList<>();
-        
-        for (int i = 0; i < N; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int number = Integer.parseInt(st.nextToken());
-            int oneCount = Integer.parseInt(st.nextToken());
-            int twoCount = Integer.parseInt(st.nextToken());
-            questions.add(new Question(number, oneCount, twoCount));
-        }
-        
-        int possibleCount = 0;
-        
-        for (int i = 123; i <= 987; i++) {
-            if (isValidNumber(i)) {
-                boolean isValid = true;
+        int answer=0;
+        LinkedList<int[]> list = new LinkedList<>();
+
+        for(int i=0;i<N;i++){            
+            int[] input = new int[3];
+            st = new StringTokenizer(br.readLine());
+            input[0] = Integer.parseInt(st.nextToken());
+            input[1] = Integer.parseInt(st.nextToken());
+            input[2] = Integer.parseInt(st.nextToken());
+            list.add(input);
+        }             
+
+        for(int i=123;i<=987;i++){
+            int h = i/100;
+            int t = (i/10)%10;
+            int o = i%10;
+            
+            if(h == t || t==o || o==h) continue;
+            boolean flag = true;
+            for(int j=0;j<list.size();j++){
+                int oneCount =0;
+                int twoCount =0;
+                int guess = list.get(j)[0];
+                int inputOneCount = list.get(j)[1];
+                int inputTwoCount = list.get(j)[2];
                 
-                for (Question q : questions) {
-                    if (!isValidCount(i, q)) {
-                        isValid = false;
-                        break;
-                    }
-                }
-                
-                if (isValid) {
-                    possibleCount++;
-                }
+                int nh = guess/100;
+                int nt = (guess/10)%10;
+                int no = guess%10;
+
+                if(h == nh) oneCount++;
+                if(t == nt) oneCount++;
+                if(o == no) oneCount++;
+
+                // if(h == nt || h == no) twoCount++;
+                // if(t == nh || t == no) twoCount++;
+                // if(o == nh || o == nt) twoCount++;
+
+                if(nh == t || nh == o) twoCount++;
+                if(nt == h || nt == o) twoCount++;
+                if(no == h || no == t) twoCount++;
+
+                if(oneCount != inputOneCount || twoCount != inputTwoCount) flag = false;
+
+
+            }
+            if(flag){
+                answer++;
             }
         }
-        
-        System.out.println(possibleCount);
-    }
-    
-    static class Question {
-        int number;
-        int oneCount;
-        int twoCount;
-        
-        Question(int number, int oneCount, int twoCount) {
-            this.number = number;
-            this.oneCount = oneCount;
-            this.twoCount = twoCount;
-        }
-    }
-    
-    public static boolean isValidNumber(int num) {
-        String s = String.valueOf(num);
-        if (s.charAt(0) == s.charAt(1) || s.charAt(1) == s.charAt(2) || s.charAt(0) == s.charAt(2)) {
-            return false;
-        }
-        if (s.contains("0")) {
-            return false;
-        }
-        return true;
-    }
-    
-    public static boolean isValidCount(int candidate, Question q) {
-        String cand = String.valueOf(candidate);
-        String guess = String.valueOf(q.number);
-        
-        int oneCount = 0;
-        int twoCount = 0;
-        
-        for (int i = 0; i < 3; i++) {
-            if (cand.charAt(i) == guess.charAt(i)) {
-                oneCount++;
-            } else if (guess.contains(String.valueOf(cand.charAt(i)))) {
-                twoCount++;
-            }
-        }
-        
-        return oneCount == q.oneCount && twoCount == q.twoCount;
+        System.out.println(answer);
     }
 }
