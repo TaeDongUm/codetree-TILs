@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     static int min = Integer.MAX_VALUE;
-    static boolean isTrue = true;
+    static boolean isTrue = false;
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
