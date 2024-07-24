@@ -19,7 +19,7 @@ public class Main {
             list.add(value);
 
         }
-        int answer=0;
+        int answer=N;
 
         for(int i=0;i<list.size();i++){
             float start1 = list.get(i)[0];
@@ -31,10 +31,10 @@ public class Main {
                 float end2 = list.get(j)[1];
                 float inc2 = list.get(j)[2];
                 float compare = (inc2*start2 + inc1*start1)/(inc2-inc1);
-                if(start1 <=compare && compare <= end1 ) answer++;
+                if(start1 <=compare && compare <= end1 ) answer--;
             }
         }
-        answer++;
+        answer--;
         System.out.println(answer);
         
     }
