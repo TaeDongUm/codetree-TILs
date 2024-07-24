@@ -19,13 +19,13 @@ public class Main {
             list.add(input);
         }
 
-        Collections.sort(list, new Comparator<String[]>(){
-            @Override
-            public int compare(String[] s1, String[] s2){
-                return Integer.parseInt(s1[1]) - Integer.parseInt(s2[1]);
-            }
+        // Collections.sort(list, new Comparator<String[]>(){
+        //     @Override
+        //     public int compare(String[] s1, String[] s2){
+        //         return Integer.parseInt(s1[1]) - Integer.parseInt(s2[1]);
+        //     }
 
-        });
+        // });
 
         int answer=0;
 
