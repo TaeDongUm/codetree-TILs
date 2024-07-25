@@ -10,27 +10,29 @@ public class Main {
         int X = Integer.parseInt(st.nextToken());
         int Y = Integer.parseInt(st.nextToken());
 
-        int count=0;
+        int answer=0;
 
         for(int i=X;i<=Y;i++){
-            String num = i + "";
-            int startIdx = 0;
-            int endIdx = num.length()-1;
-            boolean isTrue = true;
-            while(startIdx < endIdx){
-                if(num.charAt(startIdx) != num.charAt(endIdx)){
-                    isTrue = false;
-                    break;
-                }
-                startIdx++;
-                endIdx--;
-            }
-            if(isTrue){
+            int count =0;
+            int compareNum = i;
+            while(Math.pow(10,count) <= compareNum){
                 count++;
+            }
+            count--;
+            int palindrome = 0;
+
+            while(compareNum>0){
+                int tmp = compareNum%10;
+                palindrome += Math.pow(10, count)*tmp;
+                compareNum = compareNum/10;
+                count--;
+            }
+            if(i == palindrome){
+                answer++;
             }
             
         }
-        System.out.println(count);
+        System.out.println(answer);
 
     }
 }
