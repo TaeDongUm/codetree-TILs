@@ -56,8 +56,21 @@ public class Main {
         }
         int answer = 0;
         for(int i=0;i<cheeze.length;i++){
-            answer = Math.max(cheeze[i], answer);
-        }
+            int[] checkPeople = new int[N];
+            boolean isTrue = true;
+            for(int j=0;j<list.size();j++){
+                if(i == list.get(j)[1] && checkPeople[list.get(j)[0]]==0){
+                    checkPeople[list.get(j)[0]] =1;
+                }else if(i == list.get(j)[1] && checkPeople[list.get(j)[0]] !=0){
+                    isTrue = false;
+                    break;
+                } 
+            }
+            if(isTrue){
+                if(answer < cheeze[i]) answer = cheeze[i];
+            }
+            
+        }        
 
         System.out.println(answer);
         
