@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         st = new StringTokenizer(br.readLine());
@@ -13,7 +12,7 @@ public class Main {
         int D = Integer.parseInt(st.nextToken());
         int S = Integer.parseInt(st.nextToken());
 
-        LinkedList<int[]> list = new LinkedList<>();
+        List<int[]> list = new LinkedList<>();
         boolean[] visited = new boolean[N];
         int[] sickTime = new int[N];
         Arrays.fill(sickTime, Integer.MAX_VALUE);
@@ -24,7 +23,6 @@ public class Main {
             arr[0] = Integer.parseInt(st.nextToken()) - 1;
             arr[1] = Integer.parseInt(st.nextToken()) - 1;
             arr[2] = Integer.parseInt(st.nextToken());
-
             list.add(arr);
         }
 
@@ -40,7 +38,8 @@ public class Main {
 
         for (int m = 0; m < M; m++) {
             boolean possible = true;
-            int count = 0;
+            Set<Integer> sickPeople = new HashSet<>();
+
             for (int i = 0; i < N; i++) {
                 if (visited[i]) {
                     boolean found = false;
@@ -60,10 +59,10 @@ public class Main {
             if (possible) {
                 for (int[] record : list) {
                     if (record[1] == m) {
-                        count++;
+                        sickPeople.add(record[0]);
                     }
                 }
-                maxMedicinesNeeded = Math.max(maxMedicinesNeeded, count);
+                maxMedicinesNeeded = Math.max(maxMedicinesNeeded, sickPeople.size());
             }
         }
 
