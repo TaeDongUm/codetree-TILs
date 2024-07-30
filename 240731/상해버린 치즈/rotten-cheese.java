@@ -41,12 +41,6 @@ public class Main {
                 }
             }
 
-            for(int k=0;k<cheezeCheck.length;k++){
-                if(cheezeCheck[k] == 0) {
-                    cheeze[k] -= 1;
-                }
-            }
-
         }
 
         for(int i=0;i<visited.length;i++){
