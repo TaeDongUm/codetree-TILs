@@ -52,7 +52,7 @@ public class Main {
         for(int i=0;i<visited.length;i++){
             if(visited[i] == 0){
                 for(int j=0;j<list.size();j++){
-                    if(list.get(j)[0] == i && cheeze[list.get(j)[0]] !=0){
+                    if(list.get(j)[0] == i && cheeze[list.get(j)[1]] !=0){
                         cheeze[list.get(j)[1]] +=1;
                     }
                 }
@@ -64,8 +64,6 @@ public class Main {
         }
 
         System.out.println(answer);
-
-
         
     }
 }
