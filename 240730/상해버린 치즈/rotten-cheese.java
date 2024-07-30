@@ -33,7 +33,7 @@ public class Main {
             int sick = Integer.parseInt(st.nextToken());
             visited[person] =1;
 
-            int[] cheezeCheck = new int[4];
+            int[] cheezeCheck = new int[M];
             for(int j=0;j<list.size();j++){
                 if(list.get(j)[0] == person && list.get(j)[2] < sick){
                     cheeze[list.get(j)[1]] += 1;
