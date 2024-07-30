@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -14,56 +14,59 @@ public class Main {
         int S = Integer.parseInt(st.nextToken());
 
         LinkedList<int[]> list = new LinkedList<>();
-        int[] visited = new int[N];
-        int[] cheeze = new int[M];
+        boolean[] visited = new boolean[N];
+        int[] sickTime = new int[N];
+        Arrays.fill(sickTime, Integer.MAX_VALUE);
 
-        for(int i=0;i<D;i++){
-            st =new StringTokenizer(br.readLine());
+        for (int i = 0; i < D; i++) {
+            st = new StringTokenizer(br.readLine());
             int[] arr = new int[3];
-            arr[0] = Integer.parseInt(st.nextToken())-1;
-            arr[1] = Integer.parseInt(st.nextToken())-1;
+            arr[0] = Integer.parseInt(st.nextToken()) - 1;
+            arr[1] = Integer.parseInt(st.nextToken()) - 1;
             arr[2] = Integer.parseInt(st.nextToken());
 
             list.add(arr);
         }
 
-        for(int i=0;i<S;i++){
+        for (int i = 0; i < S; i++) {
             st = new StringTokenizer(br.readLine());
-            int person = Integer.parseInt(st.nextToken())-1;
+            int person = Integer.parseInt(st.nextToken()) - 1;
             int sick = Integer.parseInt(st.nextToken());
-            visited[person] =1;
-
-            int[] cheezeCheck = new int[M];
-            for(int j=0;j<list.size();j++){
-                if(list.get(j)[0] == person && list.get(j)[2] < sick){
-                    cheeze[list.get(j)[1]] += 1;
-                    cheezeCheck[list.get(j)[1]] = 1;
-                }
-            }
-
-            for(int k=0;k<cheezeCheck.length;k++){
-                if(cheezeCheck[k] == 0) {
-                    cheeze[k] -= 1;
-                }
-            }
-
+            visited[person] = true;
+            sickTime[person] = sick;
         }
 
-        for(int i=0;i<visited.length;i++){
-            if(visited[i] == 0){
-                for(int j=0;j<list.size();j++){
-                    if(list.get(j)[0] == i && cheeze[list.get(j)[1]] !=0){
-                        cheeze[list.get(j)[1]] +=1;
+        int maxMedicinesNeeded = 0;
+
+        for (int m = 0; m < M; m++) {
+            boolean possible = true;
+            int count = 0;
+            for (int i = 0; i < N; i++) {
+                if (visited[i]) {
+                    boolean found = false;
+                    for (int[] record : list) {
+                        if (record[0] == i && record[1] == m && record[2] < sickTime[i]) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        possible = false;
+                        break;
                     }
                 }
             }
-        }
-        int answer = 0;
-        for(int i=0;i<cheeze.length;i++){
-            answer = Math.max(cheeze[i], answer);
+
+            if (possible) {
+                for (int[] record : list) {
+                    if (record[1] == m) {
+                        count++;
+                    }
+                }
+                maxMedicinesNeeded = Math.max(maxMedicinesNeeded, count);
+            }
         }
 
-        System.out.println(answer);
-        
+        System.out.println(maxMedicinesNeeded);
     }
 }
