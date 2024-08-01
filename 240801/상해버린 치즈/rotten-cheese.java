@@ -68,7 +68,7 @@ public class Main {
             for(int k=0;k<visited.length;k++){
                 for(int j=0;j<checkPeople[i].length;j++){
                     if(visited[k] ==0) continue;
-                    if(visited[k] == checkPeople[i][j] ) isTrue = true;
+                    if(visited[k] == checkPeople[i][j] && k == j ) isTrue = true;
                 }
             }
             if(isTrue){
