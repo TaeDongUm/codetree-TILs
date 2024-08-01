@@ -65,12 +65,14 @@ public class Main {
         // 각 치즈가 입력값인 아픈 사람들을 포함하는지 확인하기
         for(int i=0;i<cheeze.length;i++){
             boolean isTrue = false;
+            int count=0;
             for(int k=0;k<visited.length;k++){
                 for(int j=0;j<checkPeople[i].length;j++){
                     if(visited[k] ==0) continue;
-                    if(visited[k] == checkPeople[i][j] && k == j ) isTrue = true;
+                    if(visited[k] == checkPeople[i][j] && k == j ) count++;
                 }
             }
+            if(count == S) isTrue = true;
             if(isTrue){
                 if(answer < cheeze[i]) answer = cheeze[i];
             }
