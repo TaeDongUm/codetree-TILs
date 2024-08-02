@@ -11,7 +11,6 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
         LinkedList<int[]> list = new LinkedList<>();
-        int maxStudents=0;
         
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -29,6 +28,7 @@ public class Main {
             }
         });
         int money =0;
+        int maxStudents=0;
 
         for(int i=0;i<list.size();i++){
             money += list.get(i)[0] + list.get(i)[1];
@@ -46,7 +46,7 @@ public class Main {
         for(int i=list.size()-1;i>0;i--){
             if(i == idx) continue;
 
-            tmpMoney -= list.get(i)[0] + list.get(i)[1];
+            tmpMoney -= (list.get(i)[0] + list.get(i)[1]);
             Students--;
             if(B >= tmpMoney){
                 return Students;
