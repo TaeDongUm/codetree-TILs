@@ -27,6 +27,7 @@ public class Main {
                 return Integer.compare(sumA, sumB);
             }
         });
+
         int money =0;
         int maxStudents=0;
 
@@ -43,7 +44,7 @@ public class Main {
  
     }
     public static int remove(LinkedList<int[]> list, int idx, int tmpMoney, int Students, int B){
-        for(int i=list.size()-1;i>0;i--){
+        for(int i=list.size()-1;i>=0;i--){
             if(i == idx) continue;
 
             tmpMoney -= (list.get(i)[0] + list.get(i)[1]);
