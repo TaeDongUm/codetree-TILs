@@ -2,63 +2,51 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int answer = Integer.MIN_VALUE;
     static int N, B;
-    static int countCheck=0;
-    public static void main(String[] args) throws Exception{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        st = new StringTokenizer(br.readLine());
+    static int[][] students;
+    static boolean[] visited;
+    static int maxStudents = 0;
 
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         B = Integer.parseInt(st.nextToken());
 
-        // 1. 각 학생이 쿠폰을 받을 학생이라고 가정한다.
-        // 2. dfs를 통해서 각 학생을 뺄지 포함할지 선택한다.
-
-        LinkedList<int[]> list = new LinkedList<>();
-        int[] pickStudent = new int[N];
-        int money =0;
-        int student = N;
-
-        for(int i=0;i<N;i++){
+        students = new int[N][2];
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            int[] arr = new int[2];
-            arr[0] = Integer.parseInt(st.nextToken());
-            arr[1] = Integer.parseInt(st.nextToken());
-            money += arr[0] + arr[1];
-            list.add(arr);
+            students[i][0] = Integer.parseInt(st.nextToken()); // 가격
+            students[i][1] = Integer.parseInt(st.nextToken()); // 배송비
         }
 
-        // 한 학생을 쿠폰 적용 대상자로 선택
-        for(int i=0;i<list.size();i++){
-            int tmpMoney = money - list.get(i)[0]/2;
-            pickStudent[i] = 1;
-            dfs(list, student, tmpMoney, pickStudent);
-            pickStudent[i] = 0;
-            
+        // 각 학생을 쿠폰 적용 대상으로 가정하고 DFS 시작
+        for (int i = 0; i < N; i++) {
+            visited = new boolean[N];
+            visited[i] = true;
+            int initialCost = (students[i][0] / 2) + students[i][1];
+            dfs(1, initialCost, i);
         }
-        System.out.println(answer);
 
-    }
-    public static void dfs(LinkedList<int[]> list, int student, int money, int[] pickStudent){
-        if(B >= money){
-            if(student > answer){
-                answer = student;
-                return;
-            } 
-            
-        }
-        for(int i=0;i<list.size();i++){
-            if(pickStudent[i] == 1) continue;
-            pickStudent[i] =1;
-            int tmpMoney = money -(list.get(i)[0] + list.get(i)[1]);
-            dfs(list, student -1, tmpMoney, pickStudent); // 해당 학생을 뺸다
-            // dfs(list, student, money, pickStudent); // 해당 학생을 빼지 않는다.
-            pickStudent[i] =0;
-
-        }
+        System.out.println(maxStudents);
     }
 
+    public static void dfs(int count, int currentCost, int couponIdx) {
+        // 예산을 초과하면 더 이상 탐색하지 않음
+        if (currentCost > B) {
+            return;
+        }
 
+        // 최대 학생 수 업데이트
+        maxStudents = Math.max(maxStudents, count);
+
+        for (int i = 0; i < N; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                int newCost = currentCost + students[i][0] + students[i][1];
+                dfs(count + 1, newCost, couponIdx);
+                visited[i] = false;
+            }
+        }
+    }
 }
