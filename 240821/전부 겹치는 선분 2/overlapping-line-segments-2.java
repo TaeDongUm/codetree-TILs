@@ -20,8 +20,8 @@ public class Main {
             int minEnd = 101;
             for(int j=0;j<lines.length;j++){
                 if(i== j) continue;
-                maxStart = Math.max(maxStart, lines[i][0]);
-                minEnd = Math.min(minEnd, lines[i][1]);
+                maxStart = Math.max(maxStart, lines[j][0]);
+                minEnd = Math.min(minEnd, lines[j][1]);
             }
             if(maxStart <= minEnd) isOverlapped = true;
         }
