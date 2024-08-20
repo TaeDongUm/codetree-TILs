@@ -18,6 +18,7 @@ public class Main {
                 birdNum[bird] = position;
             }else if(birdNum[bird] != position){
                 move++;
+                birdNum[bird] = position;
             }
         }
         System.out.println(move);
