@@ -45,21 +45,29 @@ public class Main {
         combination(checkPerson, dontRead, 0, 0, idxPerson);
     }
     public static void combination(int[] checkPerson, int dontRead, int idx, int count, int[] idxPerson){
-        if(count == dontRead){
-            for(int i=0;i<idxPerson.length;i++){
-                if(idxPerson[i] ==1){
-                    char answer = (char)(i + 65);
-                    System.out.print(answer);
-                }
+        // if(count == dontRead){
+        //     for(int i=0;i<idxPerson.length;i++){
+        //         if(idxPerson[i] ==1){
+        //             char answer = (char)(i + 65);
+        //             System.out.print(answer);
+        //         }
+        //     }
+        //     System.out.print(" ");
+        //     return;
+        // }
+        // for(int i=idx;i<checkPerson.length;i++){
+        //     if(checkPerson[i]==1) continue;
+        //     idxPerson[i] =1;
+        //     combination(checkPerson, dontRead, i+1, count+1, idxPerson);
+        //     idxPerson[i] =0;
+        // }
+
+        for(int i=0;i<checkPerson.length;i++){
+            if(checkPerson[i] == 0){
+                char answer = (char)(i+65);
+                System.out.print(answer);
+                System.out.print(" ");
             }
-            System.out.print(" ");
-            return;
-        }
-        for(int i=idx;i<checkPerson.length;i++){
-            if(checkPerson[i]==1) continue;
-            idxPerson[i] =1;
-            combination(checkPerson, dontRead, i+1, count+1, idxPerson);
-            idxPerson[i] =0;
         }
     }
     public static boolean isContain(LinkedList<String> list, String person){
