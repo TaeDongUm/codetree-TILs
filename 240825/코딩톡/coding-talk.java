@@ -61,7 +61,9 @@ public class Main {
         //     combination(checkPerson, dontRead, i+1, count+1, idxPerson);
         //     idxPerson[i] =0;
         // }
-
+        if(dontRead==0){
+            return;
+        }
         for(int i=0;i<checkPerson.length;i++){
             if(checkPerson[i] == 0){
                 char answer = (char)(i+65);
