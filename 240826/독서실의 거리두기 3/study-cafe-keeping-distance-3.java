@@ -12,10 +12,8 @@ public class Main {
             if(seat.charAt(i)=='1'){
                 for(int j=i+1;j<seat.length();j++){
                     if(seat.charAt(j)=='1'){
-                        if(j-i >3){
-                            minValue = Math.min(minValue, j-i);
-                            dist.add(new maxDistance(i,j, j-i));
-                        }
+                        minValue = Math.min(minValue, j-i);
+                        dist.add(new maxDistance(i,j, j-i));
                         break;
                     }
                 }
@@ -35,7 +33,8 @@ public class Main {
                 answer = Math.max(distance1, distance2);
             }
         }
-        System.out.println(answer);
+        if(minValue ==2 ) System.out.println(2);
+        if(minValue != 2) System.out.println(answer);
     }
 }
 class maxDistance{
