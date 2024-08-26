@@ -8,39 +8,25 @@ public class Main {
         int N = scanner.nextInt();
         String seats = scanner.next();
         
-        int maxMinDistance = 0;
-
-        // 각 빈자리('0')에 대해 사람을 배치했을 때 최소 거리를 계산
+        int maxDistance = 0;
+        int prevOccupied = -1;
+        
         for (int i = 0; i < N; i++) {
-            if (seats.charAt(i) == '0') {
-                int leftDistance = Integer.MAX_VALUE;
-                int rightDistance = Integer.MAX_VALUE;
-                
-                // 왼쪽으로 가장 가까운 '1'의 거리 계산
-                for (int j = i - 1; j >= 0; j--) {
-                    if (seats.charAt(j) == '1') {
-                        leftDistance = i - j;
-                        break;
-                    }
+            if (seats.charAt(i) == '1') {
+                if (prevOccupied == -1) {
+                    // 처음으로 사람이 앉아있는 자리의 앞쪽 거리 처리
+                    maxDistance = i;
+                } else {
+                    // 두 사람이 앉아있는 자리 사이의 거리의 반을 계산
+                    maxDistance = Math.max(maxDistance, (i - prevOccupied) / 2);
                 }
-                
-                // 오른쪽으로 가장 가까운 '1'의 거리 계산
-                for (int j = i + 1; j < N; j++) {
-                    if (seats.charAt(j) == '1') {
-                        rightDistance = j - i;
-                        break;
-                    }
-                }
-                
-                // 현재 빈자리에 사람을 배치했을 때의 최소 거리 계산
-                int minDistance = Math.min(leftDistance, rightDistance);
-                
-                // 그 거리 중 최댓값을 갱신
-                maxMinDistance = Math.max(maxMinDistance, minDistance);
+                prevOccupied = i;
             }
         }
         
-        // 결과 출력
-        System.out.println(maxMinDistance);
+        // 마지막으로 사람이 앉아있는 자리의 뒤쪽 거리 처리
+        maxDistance = Math.max(maxDistance, N - 1 - prevOccupied);
+        
+        System.out.println(maxDistance);
     }
 }
