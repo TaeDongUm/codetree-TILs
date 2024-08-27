@@ -19,6 +19,7 @@ public class Main {
                 }
             }
         }
+        int tmpMin = Integer.MIN_VALUE;
 
         for(int i=0;i<seats.length();i++){
             if(seats.charAt(i)=='0' && seats.charAt(i-1)=='0' && seats.charAt(i+1)=='0'){
@@ -37,11 +38,11 @@ public class Main {
                     }
                 }
                 if(leftDistance ==0 || rightDistance==0) continue;
-                int tmpMin = Math.min(minDistance, Math.min(leftDistance, rightDistance));
-                if(minDistance > tmpMin) minDistance = tmpMin;
+                int tmpValue = Math.min(minDistance, Math.min(leftDistance, rightDistance));
+                if(tmpMin < tmpValue) tmpMin = tmpValue;
             }
         }       
-        System.out.println(minDistance); 
+        System.out.println(tmpMin); 
 
     }
 }
