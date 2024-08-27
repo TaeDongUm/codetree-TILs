@@ -22,10 +22,10 @@ public class Main {
         int tmpMin = Integer.MIN_VALUE;
 
         for(int i=0;i<seats.length();i++){
-            if(seats.charAt(i)=='0' && seats.charAt(i-1)=='0' && seats.charAt(i+1)=='0'){
+            if(seats.charAt(i)=='0' ){
                 int leftDistance = 0;
                 int rightDistance = 0;
-                for(int j=i-1;j>0;j--){
+                for(int j=i-1;j>=0;j--){
                     if(seats.charAt(j)=='1'){
                         leftDistance = i-j;
                         break;
