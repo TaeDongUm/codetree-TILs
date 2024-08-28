@@ -48,11 +48,12 @@ public class Main {
 
         int minusMax = 0;
         int plusMax = 0;
-        if(minusCount >=2) {
-            minusMax = num[0]*num[1]*num[n-1];
-        }
-        plusMax = num[n-3]*num[n-2]*num[n-1];
-        int answer = Math.max(minusMax, plusMax);
+        // if(minusCount >=2) {
+        //     minusMax = num[0]*num[1]*num[n-1];
+        // }
+        // plusMax = num[n-3]*num[n-2]*num[n-1];
+        // int answer = Math.max(minusMax, plusMax);
+        int answer = Math.max(max1, max2);
         System.out.println(answer);
     }
 }
