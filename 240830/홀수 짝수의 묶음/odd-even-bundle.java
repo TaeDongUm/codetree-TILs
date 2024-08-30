@@ -26,7 +26,7 @@ public class Main {
                     continue;
                 } 
                 if((oddCount - evenCount)% 2==0){
-                    answer = evenCount*2 +1;
+                    answer = evenCount*2;
                 }
                 evenCount++;
                 oddCount -=2;
