@@ -30,9 +30,9 @@ public class Main {
                 answer++;
                 break;
             }
-            if(num[0] !=1 || num[0] != n){
+            if(num[0] !=1 && num[0] != n){
                 for(int i=1;i<n;i++){
-                    if(num[0]-1 == num[i]){
+                    if(num[i] == num[0]-1){
                         reposition(0, i);
                         break;
                     }
