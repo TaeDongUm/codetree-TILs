@@ -17,21 +17,6 @@ public class Main {
         int currentLength = 1;
 
         for (int i = 1; i < n; i++) {
-import java.io.*;
-import java.util.*;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        int[] num = new int[n];
-        
-        StringTokenizer st = new StringTokenizer(br.readLine());
-…    \}
-\}
-
-
-$0
             if (num[i] > num[i - 1]) {
                 currentLength++;
                 maxLength = Math.max(maxLength, currentLength);
