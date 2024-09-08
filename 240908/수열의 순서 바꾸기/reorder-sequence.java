@@ -2,63 +2,46 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int[] num;
-
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
         int n = Integer.parseInt(br.readLine());
-        num = new int[n];
-        st = new StringTokenizer(br.readLine());
+        int[] num = new int[n];
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
             num[i] = Integer.parseInt(st.nextToken());
         }
 
-        int answer = 0;
-        while (true) {
-            if (isAlign(0, n - 1)) {  // 배열이 정렬되었는지 확인
-                break;
-            }
+        // 가장 긴 연속된 오름차순 구간의 길이를 찾기
+        int maxLength = 1;
+        int currentLength = 1;
 
-            if (num[0] == 1) {  // 첫 번째 요소가 1일 때
-                for (int i = 0; i < n; i++) {
-                    if (num[i] == n) {  // n을 찾으면 재배치
-                        reposition(0, i);
-                        answer++;
-                        break;
-                    }
-                }
-            } else if (num[0] == n) {  // 첫 번째 요소가 n일 때
-                reposition(0, n - 1);  // n을 맨 뒤로 보내기
-                answer++;
-            } else {  // 그 외의 경우
-                for (int i = 1; i < n; i++) {
-                    if (num[i] == num[0] - 1) {  // 앞에 있는 숫자보다 하나 작은 숫자를 찾으면
-                        reposition(0, i);
-                        answer++;
-                        break;
-                    }
-                }
-            }
-        }
+        for (int i = 1; i < n; i++) {
+import java.io.*;
+import java.util.*;
 
-        System.out.println(answer);  // 정답 출력
-    }
+public class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] num = new int[n];
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
+…    \}
+\}
 
-    public static void reposition(int pre, int move) {
-        int tmpNum = num[pre];
-        for (int i = pre + 1; i <= move; i++) {
-            num[i - 1] = num[i];
-        }
-        num[move] = tmpNum;
-    }
 
-    public static boolean isAlign(int start, int end) {
-        for (int i = start; i < end; i++) {
-            if (num[i + 1] - num[i] != 1) {
-                return false;
+$0
+            if (num[i] > num[i - 1]) {
+                currentLength++;
+                maxLength = Math.max(maxLength, currentLength);
+            } else {
+                currentLength = 1;
             }
         }
-        return true;
+
+        // 이동 횟수는 총 배열의 길이 - 가장 긴 오름차순 구간의 길이
+        int answer = n - maxLength;
+        System.out.println(answer);
     }
 }
