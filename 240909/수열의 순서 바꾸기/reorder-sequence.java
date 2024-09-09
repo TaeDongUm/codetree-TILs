@@ -13,7 +13,7 @@ public class Main {
             num[i] = Integer.parseInt(st.nextToken());
         }
         int idx = n-2;
-        int answer=0;
+        int answer=-1;
         for(int i=idx;i>=0;i--){
             if(num[i] > num[i+1]){
                 answer = i;
