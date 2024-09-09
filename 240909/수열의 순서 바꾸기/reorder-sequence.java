@@ -17,6 +17,7 @@ public class Main {
         for(int i=idx;i>=0;i--){
             if(num[i] > num[i+1]){
                 answer = i;
+                break;
             }
         }
         System.out.println(answer+1);
