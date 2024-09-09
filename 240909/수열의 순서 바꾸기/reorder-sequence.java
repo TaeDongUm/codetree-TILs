@@ -12,11 +12,11 @@ public class Main {
         for(int i=0;i<n;i++){
             num[i] = Integer.parseInt(st.nextToken());
         }
-        int idx = n-1;
+        int idx = n-2;
         int answer=0;
-        for(int i=idx;i>=1;i--){
-            if(num[i-1] > num[i]){
-                answer = i-1;
+        for(int i=idx;i>=0;i--){
+            if(num[i] > num[i+1]){
+                answer = i;
             }
         }
         System.out.println(answer+1);
