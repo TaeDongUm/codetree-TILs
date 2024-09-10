@@ -33,7 +33,7 @@ public class Main {
         int remainMoveM=0;
         String mDir="";
         int clock=0;
-        int clockCheck=-1;
+        int clockCheck=0;
         int answer=0;
         int goal = Math.max(nClockSum, mClockSum);
         while(clock < goal){
