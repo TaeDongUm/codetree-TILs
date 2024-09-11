@@ -22,7 +22,7 @@ public class Main {
             int v = Integer.parseInt(st.nextToken());
             int t = Integer.parseInt(st.nextToken());
             for(int j=0;j<t;j++){
-                moveA[aIndex] = v;
+                moveA[aIndex] = v + moveA[aIndex-1];
                 aIndex++;
             }
         }
@@ -32,7 +32,7 @@ public class Main {
             int v = Integer.parseInt(st.nextToken());
             int t = Integer.parseInt(st.nextToken());
             for(int j=0;j<t;j++){
-                moveB[bIndex] = v;
+                moveB[bIndex] = v + moveB[bIndex-1];
                 bIndex++;
             }
         }
