@@ -23,7 +23,7 @@ public class Main {
                 check[i] = 1;
                 int tmpLength=1;
                 int index=i;
-                while(index < n-1 && num[index] > t){
+                while(index < n-1 && num[index +1] > t){
                     tmpLength++;
                     index++;
                     check[index] = 1;
