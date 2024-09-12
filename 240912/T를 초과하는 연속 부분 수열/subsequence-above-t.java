@@ -11,7 +11,7 @@ public class Main {
         int t = Integer.parseInt(st.nextToken());
 
         int[] num = new int[n];
-        int maxLength = Integer.MIN_VALUE;
+        int maxLength = 0;
         st = new StringTokenizer(br.readLine());
         for(int i=0;i<n;i++){
             num[i] = Integer.parseInt(st.nextToken());
