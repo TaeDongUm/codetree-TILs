@@ -11,7 +11,7 @@ public class Main {
         int curDir = 0;
         int startR =0;
         int startC =0;
-        int answer=0;
+        int answer=-1;
 
         for(int i=0;i<input.length();i++){
             if(input.charAt(i)=='F'){
