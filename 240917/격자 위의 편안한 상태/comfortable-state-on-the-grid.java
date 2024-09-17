@@ -7,6 +7,8 @@ public class Main {
     static int[] dc = {0,0,-1,1};
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
         st =new StringTokenizer(br.readLine());
 
@@ -31,10 +33,14 @@ public class Main {
                 }
             }
             if(count ==3){
-                System.out.println(1);                
+                sb.append(1);                
             }else{
-                System.out.println(0);
+                sb.append(0);
             }
+            sb.append("\n");
         }
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 }
