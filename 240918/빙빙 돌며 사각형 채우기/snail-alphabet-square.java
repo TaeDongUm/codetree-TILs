@@ -35,10 +35,8 @@ public class Main {
                 num++;
             }else{
                 dir = (dir +1) %4;
-                nr = r + dr[dir];
-                nc = c + dc[dir];
-                r = nr;
-                c = nc;
+                r = r + dr[dir];
+                c = c + dc[dir];   
                 num++;
             }
 
@@ -50,22 +48,10 @@ public class Main {
             System.out.println();
         }
     }
-//    public static boolean check(int r, int c){
-//        return (r>=0 && r<n && c>=0 && c<m);
-//    }
     public static boolean isVisited(int r, int c){
         if(!(r>=0 && r<n && c>=0 && c<m)) return false;
         if(visited[r][c] !=0) return false;
         return true;
     }
-    // public static boolean isFull(int input){
-    //     int count=0;
-    //     for(int i=0;i<n;i++){
-    //         for(int j=0;j<m;j++){
-    //             if(visited[i][j]==1) count++;
-    //         }
-    //     }
-    //     if(count==input)return true;
-    //     return false;
-    // }
+
 }
