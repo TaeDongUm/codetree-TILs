@@ -21,9 +21,9 @@ public class Main {
         int r = 0;
         int c = 0;
         int dir=0;
-        boolean condition=true;
+        int condition=0;
 
-        while(condition){
+        while(num<n*m){
             char ch = (char)('A'+num%26);
             alpha[r][c] = ch;
             visited[r][c] =1;
@@ -35,10 +35,13 @@ public class Main {
                 num++;
             }else{
                 dir = (dir +1) %4;
+                nr = r + dr[dir];
+                nc = c + dc[dir];
+                r = nr;
+                c = nc;
+                num++;
             }
-            if(isFull(n*m)){
-                condition=false;
-            }
+
         }
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
@@ -55,14 +58,14 @@ public class Main {
         if(visited[r][c] !=0) return false;
         return true;
     }
-    public static boolean isFull(int input){
-        int count=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(visited[i][j]==1) count++;
-            }
-        }
-        if(count==input)return true;
-        return false;
-    }
+    // public static boolean isFull(int input){
+    //     int count=0;
+    //     for(int i=0;i<n;i++){
+    //         for(int j=0;j<m;j++){
+    //             if(visited[i][j]==1) count++;
+    //         }
+    //     }
+    //     if(count==input)return true;
+    //     return false;
+    // }
 }
