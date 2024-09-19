@@ -45,7 +45,12 @@ public class Main {
                 }
             }
         }
-        System.out.println(answer);
+        StringBuilder sb =new StringBuilder();
+        sb.append(answer);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+        // System.out.println(answer);
     }
     public static boolean isSatisfied(int r, int c, int n){
         if(!(r>=0 && r<n && c>=0 && c<n)) return false;        
