@@ -17,27 +17,26 @@ public class Main {
 
         char[][] alpha = new char[n][m];
         visited= new int[n][m];
-        int num=0;
+        int num=1;
         int r = 0;
         int c = 0;
         int dir=0;
         int condition=0;
+        alpha[r][c] = 'A';
+        visited[r][c]=1;
 
         while(num<n*m){
-            char ch = (char)('A'+num%26);
-            alpha[r][c] = ch;
-            visited[r][c] =1;
             int nr = r + dr[dir];
             int nc = c + dc[dir];
             if(isVisited(nr,nc)){
                 r = nr;
                 c = nc;
+                char ch = (char)('A'+num%26);
+                alpha[r][c] = ch;
+                visited[r][c] =1;
                 num++;
             }else{
                 dir = (dir +1) %4;
-                r = r + dr[dir];
-                c = c + dc[dir];   
-                num++;
             }
 
         }
