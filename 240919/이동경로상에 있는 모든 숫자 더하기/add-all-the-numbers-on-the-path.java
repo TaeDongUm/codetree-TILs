@@ -32,8 +32,8 @@ public class Main {
                 dir = (dir + 1) % 4;
             }
             if(input.charAt(i)=='R'){
-                dir = (dir - 1) % 4;
-                if(dir==-1) dir =3;
+                dir = (dir + 3) % 4;
+
             }
             if(input.charAt(i)=='F'){
                 int nextR = currR + dr[dir];
