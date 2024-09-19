@@ -33,7 +33,7 @@ public class Main {
             }
             if(input.charAt(i)=='R'){
                 dir = (dir - 1) % 4;
-                if(dir -1 <0) dir = 3;
+                if(dir==-1) dir =3;
             }
             if(input.charAt(i)=='F'){
                 int nextR = currR + dr[dir];
