@@ -4,20 +4,19 @@ import java.util.*;
 public class Main {
     static int[] dr= {0,-1,0,1};
     static int[] dc= {1,0,-1,0};
-    static int[][] visited;    
+
     public static void main(String[] args) throws Exception{
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = Integer.parseInt(br.readLine());
         int[][] answer = new int[n][n];
-        visited = new int[n][n];
+
 
         int currR = n/2;
         int currC = n/2;
         int dir=0;
         answer[currR][currC]=1;
-        visited[currR][currC]=1;
         int moveNum=1;
         int move=moveNum;
         int dirCount=1;        
@@ -29,6 +28,7 @@ public class Main {
             // 2. move 다 소진시 방향 바꾸기
             // 3. 방향을 2번 바꾸면 moveNum++ 하고 move에 넣기
             if(dirCount==2){
+                dirCount=0;
                 moveNum++;
             }
             if(move==0){
@@ -57,10 +57,5 @@ public class Main {
         bw.write(sb.toString());
         bw.flush();
         bw.close();
-    }
-    public static boolean isSatisfied(int r, int c, int n){
-        if(!(r>=0 && r<n && c>=0 && c<n)) return false;
-        if(visited[r][c] !=0) return false;
-        return true;
     }
 }
