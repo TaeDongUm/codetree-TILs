@@ -21,8 +21,6 @@ public class Main {
         int move=moveNum;
         int dirCount=1;        
 
-        // 1. move를 얼마만큼 소진했나
-        // 2. 방향을 튼 횟수가 2번인지      
         for(int i=2;i<=n*n;i++){
             // 1. move만큼 한 방향으로 이동
             // 2. move 다 소진시 방향 바꾸기
