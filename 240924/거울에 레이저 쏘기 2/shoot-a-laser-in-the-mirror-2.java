@@ -2,179 +2,58 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int[] dr={0,1,0,-1};
+    static int[] dr={0,1,0,-1}; // 우, 하, 좌, 상
     static int[] dc={1,0,-1,0};
-    static int inputLazerR=0;
-    static int inputLazerC=0;
-    static int[][] visited, index;
-    static int size,N;
-    public static void main(String[] args) throws Exception{
+    static int N;
+    static int[][] visited;
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         N = Integer.parseInt(br.readLine());
-        char[][] input = new char[N][N];
-        size= N+2;
-        index = new int[size][size];
-        visited = new int[size][size];
-        visited[0][0] =1;       
-
-        for(int i=0;i<N;i++){
-            String inputLine = br.readLine();
-            for(int j=0;j<N;j++){
-                input[i][j] = inputLine.charAt(j);
-            }
+        char[][] map = new char[N][N];
+        for (int i = 0; i < N; i++) {
+            map[i] = br.readLine().toCharArray();
         }
+
         int K = Integer.parseInt(br.readLine());
-        inputPosition(K);
-        System.out.println(lazerDir(inputLazerR, inputLazerC, input)-1);
-
-        // System.out.println(inputLazerR+" "+inputLazerC);
-    }
-    public static void inputPosition(int inputNum){
-        int currR = 0;
-        int currC = 0;
-        int dir = 0;
         
-        for(int num=1;num<=4*(size-1);num++){
-            int nextR = currR + dr[dir];
-            int nextC = currC + dc[dir];
-            if(!indexCheck(nextR, nextC)){
-                num--;
-            }       
-            if(isSatisfied(nextR, nextC)){
-                if(num==inputNum){
-                    inputLazerR = nextR;
-                    inputLazerC = nextC;
-                    return;
-                }
-                currR = nextR;
-                currC = nextC;
-                index[currR][currC]=num;
-                continue;
-            }else{
-                dir = (dir + 1) % 4;            
-            }
-        }         
-        
-    }
-    public static boolean indexCheck(int r, int c){
-        if(r==0 && c==0) return false;
-        if(r==0 && c==size-1) return false;
-        if(r==size-1 && c==0) return false;
-        if(r==size-1 && c==size-1) return false;
-        return true;
-    }
-    public static boolean isSatisfied(int r, int c){
-        if(!(r>=0 && r<N && c>=0 && c<N)) return false;
-        if(visited[r][c] ==1) return false;
-        return true;
-    }
-    public static int lazerDir(int r, int c, char[][] input){
-        int answer=0;
-        int dir=-1;
-        if(r==0){
-            dir=1;
-            c = c-1;            
-            while(true){         
-                dir = direction(input[r][c], dir);   
-                answer++;
-                int nr = r+dr[dir];
-                int nc = c+dc[dir];
-                if(isRange(nr, nc)){
-                    r = nr;
-                    c = nc;
-                }else{
-                    break;
-                }
-            }
+        // 레이저 발사 위치와 방향 설정
+        int r = 0, c = 0, dir = 0;
+        if (K <= N) {
+            r = 0; c = K - 1; dir = 1; // 상단에서 시작 -> 아래 방향
+        } else if (K <= 2 * N) {
+            r = K - N - 1; c = N - 1; dir = 2; // 우측에서 시작 -> 왼쪽 방향
+        } else if (K <= 3 * N) {
+            r = N - 1; c = 3 * N - K; dir = 3; // 하단에서 시작 -> 위쪽 방향
+        } else {
+            r = 4 * N - K; c = 0; dir = 0; // 좌측에서 시작 -> 오른쪽 방향
         }
-        if(c==0){
-            dir=0;
-            r=r-1;
-            while(true){         
-                dir = direction(input[r][c], dir);   
-                answer++;
-                int nr = r+dr[dir];
-                int nc = c+dc[dir];
-                if(isRange(nr, nc)){
-                    r = nr;
-                    c = nc;
-                }else{
-                    break;
-                }
+
+        int answer = simulateLaser(r, c, dir, map);
+        System.out.println(answer);
+    }
+
+    public static int simulateLaser(int r, int c, int dir, char[][] map) {
+        int count = 0;
+
+        while (true) {
+            // 레이저가 맵을 벗어나면 종료
+            if (r < 0 || r >= N || c < 0 || c >= N) break;
+
+            // 현재 위치에서 거울을 만났을 때 방향 변경
+            if (map[r][c] == '/') {
+                dir = (dir == 0) ? 3 : (dir == 1) ? 2 : (dir == 2) ? 1 : 0;
+            } else if (map[r][c] == '\\') {
+                dir = (dir == 0) ? 1 : (dir == 1) ? 0 : (dir == 2) ? 3 : 2;
             }
 
+            // 방향에 따라 이동
+            r += dr[dir];
+            c += dc[dir];
+            count++;
         }
-        if(r==N-1){
-            dir=3;
-            c=c-1;
-            while(true){         
-                dir = direction(input[r][c], dir);   
-                answer++;
-                int nr = r+dr[dir];
-                int nc = c+dc[dir];
-                if(isRange(nr, nc)){
-                    r = nr;
-                    c = nc;
-                }else{
-                    break;
-                }
-            }
 
-        }
-        if(c==N-1){
-            dir=2;
-            r=r-1;
-            while(true){         
-                dir = direction(input[r][c], dir);   
-                answer++;
-                int nr = r+dr[dir];
-                int nc = c+dc[dir];
-                if(isRange(nr, nc)){
-                    r = nr;
-                    c = nc;
-                }else{
-                    break;
-                }
-            }
-        }
-        return answer;
+        return count;
     }
-    public static boolean isRange(int r, int c){
-        if(!(r>=0 && r<N && c>=0 && c<N)) return false;
-        return true;
-    }
-    public static int direction(char c, int dir){
-        if(c=='\\'){
-            if(dir==0){                
-                return 1;
-            }
-            if(dir==1){
-                return 0;
-            }
-            if(dir==2){
-                return 3;
-            }
-            if(dir==3){
-                return 2;
-            }
-        }
-        if(c=='/'){
-            if(dir==0){
-                return 3;
-            }
-            if(dir==1){
-                return 2;                
-            }
-            if(dir==2){
-                return 1;
-            }
-            if(dir==3){
-                return 0;
-            }
-        }
-        return -1;
-    }
-    
 }
