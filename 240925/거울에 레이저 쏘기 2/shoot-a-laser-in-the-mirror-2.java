@@ -105,7 +105,6 @@ public class Main {
         if(r==0){
             dir=1;
             c = c-1;
-            System.out.println("1");
             while(true){         
                 dir = direction(input[r][c], dir);   
                 answer++;
@@ -122,7 +121,6 @@ public class Main {
         else if(c==0){
             dir=0;
             r=r-1;
-            System.out.println("2");
             while(true){         
                 dir = direction(input[r][c], dir);   
                 answer++;
@@ -141,7 +139,6 @@ public class Main {
             dir=3;
             c=c-1;
             r=r-2;
-            System.out.println("3");
             while(true){         
                 dir = direction(input[r][c], dir);   
                 answer++;
