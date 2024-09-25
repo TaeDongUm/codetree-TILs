@@ -28,7 +28,8 @@ public class Main {
         int K = Integer.parseInt(br.readLine());
         inputPosition(K);
         // System.out.println(inputLazerR+" "+inputLazerC+" check");
-        System.out.println(lazerDir(inputLazerR, inputLazerC, input));
+        // System.out.println(lazerDir(inputLazerR, inputLazerC, input));
+        System.out.println(lazerDir(inputLazerR, inputLazerC, input)); 
 
     }
     public static void inputPosition(int inputNum){
@@ -36,26 +37,54 @@ public class Main {
         int currC = 0;
         int dir = 0;
         
-        for(int num=1;num<=4*(size-1);num++){
+        for(int num=1;num<=4*N;num++){
             int nextR = currR + dr[dir];
             int nextC = currC + dc[dir];
-            if(!indexCheck(nextR, nextC)){
-                num--;
-            }       
-            if(isSatisfied(nextR, nextC)){
-                if(num==inputNum){
-                    inputLazerR = nextR;
-                    inputLazerC = nextC;
-                    return;
-                }
+            if(nextR >=0 && nextR <size && nextC >=0 && nextC <size){
                 currR = nextR;
                 currC = nextC;
-                index[currR][currC]=num;
-                continue;
+                if(!indexCheck(currR, currC)){
+                    index[currR][currC]=0;
+                }else{
+                    index[currR][currC] = num;
+                    if(num==inputNum){
+                        inputLazerR = nextR;
+                        inputLazerC = nextC;
+                        return;
+                    }
+                }
             }else{
-                dir = (dir + 1) % 4;            
+                dir = (dir + 1) % 4;
+                num -=2;
             }
-        }         
+            // if(!indexCheck(nextR, nextC)){
+            //     num--;
+            //     currR = nextR;
+            //     currC = nextC;
+            //     dir = (dir + 1) % 4;
+            //     continue;
+            // }       
+            // if(isSatisfied(nextR, nextC)){
+            //     if(num==inputNum){
+            //         inputLazerR = nextR;
+            //         inputLazerC = nextC;
+            //         return;
+            //     }
+            //     currR = nextR;
+            //     currC = nextC;
+            //     index[currR][currC]=num;
+            //     continue;
+            // }
+            // else{
+            //     dir = (dir + 1) % 4;            
+            // }
+        }  
+        // for(int i=0;i<N+2;i++){
+        //     for(int j=0;j<N+2;j++){
+        //         System.out.print(index[i][j]);
+        //     }
+        //     System.out.println();
+        // }       
         
     }
     public static boolean indexCheck(int r, int c){
@@ -72,10 +101,11 @@ public class Main {
     }
     public static int lazerDir(int r, int c, char[][] input){
         int answer=0;
-        int dir=-1;
+        int dir=-2;
         if(r==0){
             dir=1;
             c = c-1;
+            System.out.println("1");
             while(true){         
                 dir = direction(input[r][c], dir);   
                 answer++;
@@ -92,6 +122,7 @@ public class Main {
         else if(c==0){
             dir=0;
             r=r-1;
+            System.out.println("2");
             while(true){         
                 dir = direction(input[r][c], dir);   
                 answer++;
@@ -106,10 +137,11 @@ public class Main {
             }
 
         }
-        else if(r==N-1){
+        else if(r==N+1){
             dir=3;
             c=c-1;
             r=r-2;
+            System.out.println("3");
             while(true){         
                 dir = direction(input[r][c], dir);   
                 answer++;
@@ -124,12 +156,17 @@ public class Main {
             }
 
         }
-        else if(c==N-1){
+        else if(c==N+1){
             dir=2;
             r=r-1;
             c=c-2;
+            // r=30;
+            // c=44;
+            // System.out.println("4");
+            // System.out.println(r+" "+c);
             while(true){         
-                dir = direction(input[r][c], dir);   
+                // System.out.println(input[r][c]+" "+dir); 
+                dir = direction(input[r][c], dir);  
                 answer++;
                 int nr = r+dr[dir];
                 int nc = c+dc[dir];
@@ -176,7 +213,7 @@ public class Main {
                 return 0;
             }
         }
-        return -1;
+        return -2;
     }
     
 }
