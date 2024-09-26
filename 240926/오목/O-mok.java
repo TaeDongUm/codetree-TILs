@@ -31,6 +31,7 @@ public class Main {
                 }
             }
         }
+        System.out.println(0);
     }
     public static boolean sequence(int r, int c, int color){
         int dir=-1;
