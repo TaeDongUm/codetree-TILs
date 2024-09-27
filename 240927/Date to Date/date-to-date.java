@@ -13,7 +13,7 @@ public class Main {
 
         int m2 = Integer.parseInt(st.nextToken());
         int d2 = Integer.parseInt(st.nextToken());
-        int answer=0;
+        int answer=1;
         while(true){
             if(m1==m2 && d1==d2){
                 break;
@@ -22,7 +22,7 @@ public class Main {
             d1++;
             if(d1>days[m1]){
                 m1++;
-                d1=0;
+                d1=1;
             }
         }
         System.out.println(answer);
