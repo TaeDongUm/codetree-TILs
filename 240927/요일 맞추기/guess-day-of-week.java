@@ -35,7 +35,7 @@ public class Main {
 
         if(diff<0){
             isMinus = true;
-            diff = 7- diff*(-1) % 7;
+            diff = 7- (diff*(-1) % 7);
             daysIdx = (daysIdx + diff)% 7;
             System.out.println(days[daysIdx]);
         }else{
