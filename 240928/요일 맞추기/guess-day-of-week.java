@@ -26,32 +26,8 @@ public class Main {
         diff1 = diff1 + d1;
         diff2 = diff2 + d2;
         int diff = diff2 - diff1;
-        boolean isMinus = false;
-        // while(true){
-        //     if(m1==m2 && d1==d2){
-        //         break;
-        //     }
-        //     d1++;
-        //     daysIdx++;
-        //     if(d1>monthDays[m1]){
-        //         d1=1;
-        //         m1++;
-        //     }
-        //     if(daysIdx>6){
-        //         daysIdx = daysIdx % 7;
-        //     }
-        // }
-        daysIdx=(7+diff%7 + daysIdx )%7;
-        System.out.println(days[daysIdx]);
-        // if(diff<0){
-        //     isMinus = true;
-        //     diff = 7- (diff*(-1) % 7);
-        //     daysIdx = (daysIdx + diff)% 7;
-        //     System.out.println(days[daysIdx]);
-        // }else{
-        //     daysIdx = (daysIdx + diff)% 7;
-        //     System.out.println(days[daysIdx]);
-        // }
 
+        daysIdx=(diff%7 + daysIdx )%7;
+        System.out.println(days[daysIdx]);
     }
 }
