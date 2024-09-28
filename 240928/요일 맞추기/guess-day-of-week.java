@@ -27,7 +27,7 @@ public class Main {
         diff2 = diff2 + d2;
         int diff = diff2 - diff1;
 
-        daysIdx=(diff%7 + daysIdx )%7;
+        daysIdx=(7+diff%7 + daysIdx )%7;
         System.out.println(days[daysIdx]);
     }
 }
