@@ -8,8 +8,11 @@ public class Main {
 
         LinkedList<Integer> digit = new LinkedList<>();
 
-        while(n>0){
-            
+        while(true){
+            if(n<2){
+                digit.add(n);
+                break;
+            }    
             digit.add(n % 2);
             n = n/2;
         }
