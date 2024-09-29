@@ -13,7 +13,7 @@ public class Main {
         String n = br.readLine();
         int num = 0;
         for(int i=0;i<n.length();i++){
-            num = num*8 + n.charAt(i)-'0';
+            num = num*a + n.charAt(i)-'0';
         }
         LinkedList<Integer> digit = new LinkedList<>();
 
