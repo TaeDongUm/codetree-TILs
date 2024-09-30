@@ -15,7 +15,7 @@ public class Main {
             for(int j=1;j<=x;j++){
                 if(dir.equals("R")){
                     curr++;
-                    line[curr]++;
+                    line[curr-1]++;
                 }
                 if(dir.equals("L")){
                     curr--;
