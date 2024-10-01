@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
         int[] white = new int[200001];
         int[] black = new int[200001];
@@ -66,7 +67,10 @@ public class Main {
                 ansG++;
             }
         }
-
-        System.out.println(ansW+" "+ansB+" "+ansG);
+        sb.append(ansW).append("\t").append(ansB).append("\t").append(ansG);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+        // System.out.println(ansW+" "+ansB+" "+ansG);
     }
 }
