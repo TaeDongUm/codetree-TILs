@@ -9,11 +9,11 @@ public class Main {
         StringTokenizer st;
         int[] white = new int[200001];
         int[] black = new int[200001];
-        String[] currColor = new String[200001];
+        // String[] currColor = new String[200001];
         int[] colorList = new int[200001];
-        for (int i = 0; i < currColor.length; i++) {
-            currColor[i] = "non";
-        }
+        // for (int i = 0; i < currColor.length; i++) {
+        //     currColor[i] = "non";
+        // }
 
         int curr = 100000;
         int n = Integer.parseInt(br.readLine());
@@ -26,8 +26,8 @@ public class Main {
             String dir = st.nextToken();
             for(int j=0;j<move;j++){
                 if(dir.equals("L")){
-                    if(currColor[curr].equals("gray")){
-
+                    // if(currColor[curr].equals("gray")){
+                    if(colorList[curr]==3){
                     }else{
                         // currColor[curr]="white";
                         colorList[curr]=1;
@@ -40,8 +40,8 @@ public class Main {
                     curr--;
                 }
                 if(dir.equals("R")){
-                    if(currColor[curr].equals("gray")){
-
+                    // if(currColor[curr].equals("gray")){
+                    if(colorList[curr]==3){
                     }else{
                         // currColor[curr]="black";
                         colorList[curr]=2;
