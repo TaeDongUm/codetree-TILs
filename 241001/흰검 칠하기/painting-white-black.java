@@ -28,10 +28,20 @@ public class Main {
                     if(currColor[curr].equals("gray")){
 
                     }else{
+                        if(currColor[curr].equals("non")){
+                            ansW++;
+                        }else if(currColor[curr].equals("black")){
+                            ansB--;
+                            ansW++;
+                        }
                         currColor[curr]="white";
                         white[curr]++;
                         if(white[curr]>=2 && black[curr]>=2){
+                            if(currColor[curr].equals("white")){
+                                ansW--;
+                            }
                             currColor[curr]="gray";
+                            ansG++;
                         }
                     }
                     curr--;
@@ -40,10 +50,20 @@ public class Main {
                     if(currColor[curr].equals("gray")){
 
                     }else{
+                        if(currColor[curr].equals("non")){
+                            ansB++;
+                        }else if(currColor[curr].equals("white")){
+                            ansW--;
+                            ansB++;
+                        }
                         currColor[curr]="black";
                         black[curr]++;  
                         if(white[curr]>=2 && black[curr]>=2){
+                            if(currColor[curr].equals("black")){
+                                ansB--;
+                            }
                             currColor[curr]="gray";
+                            ansG++;
                         }
                     }
                     curr++;
@@ -56,21 +76,18 @@ public class Main {
                 curr--;
             }
         }
-        for(int i=0;i<currColor.length;i++){
-            if(currColor[i].equals("white")){
-                ansW++;
-            }
-            if(currColor[i].equals("black")){
-                ansB++;
-            }
-            if(currColor[i].equals("gray")){
-                ansG++;
-            }
-        }
-        sb.append(ansW).append("\t").append(ansB).append("\t").append(ansG);
-        bw.write(sb.toString());
-        bw.flush();
-        bw.close();
-        // System.out.println(ansW+" "+ansB+" "+ansG);
+        // for(int i=0;i<currColor.length;i++){
+        //     if(currColor[i].equals("white")){
+        //         ansW++;
+        //     }
+        //     if(currColor[i].equals("black")){
+        //         ansB++;
+        //     }
+        //     if(currColor[i].equals("gray")){
+        //         ansG++;
+        //     }
+        // }
+
+        System.out.println(ansW+" "+ansB+" "+ansG);
     }
 }
