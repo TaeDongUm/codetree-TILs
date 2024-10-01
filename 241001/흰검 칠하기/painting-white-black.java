@@ -10,6 +10,7 @@ public class Main {
         int[] white = new int[200001];
         int[] black = new int[200001];
         String[] currColor = new String[200001];
+        int[] colorList = new int[200001];
         for (int i = 0; i < currColor.length; i++) {
             currColor[i] = "non";
         }
@@ -28,20 +29,12 @@ public class Main {
                     if(currColor[curr].equals("gray")){
 
                     }else{
-                        if(currColor[curr].equals("non")){
-                            ansW++;
-                        }else if(currColor[curr].equals("black")){
-                            ansB--;
-                            ansW++;
-                        }
-                        currColor[curr]="white";
+                        // currColor[curr]="white";
+                        colorList[curr]=1;
                         white[curr]++;
                         if(white[curr]>=2 && black[curr]>=2){
-                            if(currColor[curr].equals("white")){
-                                ansW--;
-                            }
-                            currColor[curr]="gray";
-                            ansG++;
+                            // currColor[curr]="gray"; 
+                            colorList[curr]=3;
                         }
                     }
                     curr--;
@@ -50,20 +43,12 @@ public class Main {
                     if(currColor[curr].equals("gray")){
 
                     }else{
-                        if(currColor[curr].equals("non")){
-                            ansB++;
-                        }else if(currColor[curr].equals("white")){
-                            ansW--;
-                            ansB++;
-                        }
-                        currColor[curr]="black";
+                        // currColor[curr]="black";
+                        colorList[curr]=2;
                         black[curr]++;  
                         if(white[curr]>=2 && black[curr]>=2){
-                            if(currColor[curr].equals("black")){
-                                ansB--;
-                            }
-                            currColor[curr]="gray";
-                            ansG++;
+                            // currColor[curr]="gray";
+                            colorList[curr]=3;
                         }
                     }
                     curr++;
@@ -87,6 +72,17 @@ public class Main {
         //         ansG++;
         //     }
         // }
+        for(int i=0;i<colorList.length;i++){
+            if(colorList[i]==1){
+                ansW++;
+            }
+            if(colorList[i]==2){
+                ansB++;
+            }
+            if(colorList[i]==3){
+                ansG++;
+            }
+        }
 
         System.out.println(ansW+" "+ansB+" "+ansG);
     }
