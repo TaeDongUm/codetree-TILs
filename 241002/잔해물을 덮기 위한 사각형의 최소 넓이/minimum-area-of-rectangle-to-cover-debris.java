@@ -37,7 +37,11 @@ public class Main {
             for(int i=first_x1;i<first_x2;i++){
                 if(map[j][i]==1){
                     tmpLengthX++;
-                    if(!xSequence) tmpLengthX = maxX;
+                    if(!xSequence){
+                        tmpLengthX = maxX;
+                        break;
+                    } 
+                    
                 }
                 if(map[j][i]==2){
                     xSequence=false;
@@ -52,7 +56,10 @@ public class Main {
             for(int j=first_y1;j<first_y2;j++){
                 if(map[j][i]==1){
                     tmpLengthY++;
-                    if(!ySequence) tmpLengthY = maxY;
+                    if(!ySequence){
+                        tmpLengthY = maxY;
+                        break;
+                    }                    
                 }
                 if(map[j][i]==2){
                     ySequence = false;
