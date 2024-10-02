@@ -54,6 +54,9 @@ public class Main {
                     tmpLengthY++;
                     if(!ySequence) tmpLengthY = maxY;
                 }
+                if(map[j][i]==2){
+                    ySequence = false;
+                }
             }
             answerY = Math.max(answerY, tmpLengthY);
         }
