@@ -41,15 +41,15 @@ public class Main {
                     tmpLengthX++;
                     if(sign ==-1){
                         signCount++;
-                        sign=1;
                     }
+                    sign=1;
                 } 
                     
                 if(map[j][i]==2){
                     if(sign==1){
                         signCount++;
-                        sign=-1;
                     }
+                    sign=-1;
                 }
             }
             if(signCount>=2) answerX = maxX;
