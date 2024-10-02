@@ -32,7 +32,6 @@ public class Main {
         }
         int answerX=0;
         for(int j=first_y1;j<first_y2;j++){
-            boolean xSequence=true;
             int tmpLengthX=0;
             int sign=0;
             int signCount=0;
