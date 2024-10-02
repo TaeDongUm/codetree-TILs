@@ -31,11 +31,11 @@ public class Main {
             }
         }
         int answerX=0;
-        int sign=0;
-        int signCount=0;
         for(int j=first_y1;j<first_y2;j++){
             boolean xSequence=true;
             int tmpLengthX=0;
+            int sign=0;
+            int signCount=0;
             for(int i=first_x1;i<first_x2;i++){
                 if(map[j][i]==1){
                     tmpLengthX++;
@@ -55,12 +55,13 @@ public class Main {
             if(signCount>=2) answerX = maxX;
             else answerX = Math.max(answerX, tmpLengthX);
         }
+
         
         int answerY=0;
-        sign=0; // -1: -값, 0: 부호 없음, 1: +값 
-        signCount=0;
         for(int i=first_x1;i<first_x2;i++){
             int tmpLengthY=0;
+            int sign=0; // -1: -값, 0: 부호 없음, 1: +값 
+            int signCount=0;
             for(int j=first_y1;j<first_y2;j++){
                 if(map[j][i]==1){
                     tmpLengthY++;
