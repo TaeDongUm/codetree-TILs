@@ -17,6 +17,8 @@ public class Main {
                 map[j][i] = 1;
             }
         }
+        int maxX = first_x2 - first_x1;
+        int maxY = first_y2 - first_y1;
 
         st = new StringTokenizer(br.readLine());
         int sec_x1 = Integer.parseInt(st.nextToken())+1000;
@@ -28,27 +30,34 @@ public class Main {
                 map[j][i] = 2;
             }
         }
-        int maxX=0;
-        int maxY=0;
+        int answerX=0;
         for(int j=first_y1;j<first_y2;j++){
+            boolean xSequence=true;
             int tmpLengthX=0;
             for(int i=first_x1;i<first_x2;i++){
                 if(map[j][i]==1){
                     tmpLengthX++;
+                    if(!xSequence) tmpLengthX = maxX;
+                }
+                if(map[j][i]==2){
+                    xSequence=false;
                 }
             }
-            maxX = Math.max(maxX, tmpLengthX);
+            answerX = Math.max(answerX, tmpLengthX);
         }
+        int answerY=0;
         for(int i=first_x1;i<first_x2;i++){
+            boolean ySequence=true;
             int tmpLengthY=0;
             for(int j=first_y1;j<first_y2;j++){
                 if(map[j][i]==1){
                     tmpLengthY++;
+                    if(!ySequence) tmpLengthY = maxY;
                 }
             }
-            maxY = Math.max(maxY, tmpLengthY);
+            answerY = Math.max(answerY, tmpLengthY);
         }
-        int answer = (maxX)*(maxY);
+        int answer = (answerX)*(answerY);
         System.out.println(answer);
 
     }
