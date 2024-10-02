@@ -31,41 +31,53 @@ public class Main {
             }
         }
         int answerX=0;
+        int sign=0;
+        int signCount=0;
         for(int j=first_y1;j<first_y2;j++){
             boolean xSequence=true;
             int tmpLengthX=0;
             for(int i=first_x1;i<first_x2;i++){
                 if(map[j][i]==1){
                     tmpLengthX++;
-                    if(!xSequence){
-                        tmpLengthX = maxX;
-                        break;
-                    } 
+                    if(sign ==-1){
+                        signCount++;
+                        sign=1;
+                    }
+                } 
                     
-                }
                 if(map[j][i]==2){
-                    xSequence=false;
+                    if(sign==1){
+                        signCount++;
+                        sign=-1;
+                    }
                 }
             }
-            answerX = Math.max(answerX, tmpLengthX);
+            if(signCount>=2) answerX = maxX;
+            else answerX = Math.max(answerX, tmpLengthX);
         }
+        
         int answerY=0;
+        sign=0; // -1: -값, 0: 부호 없음, 1: +값 
+        signCount=0;
         for(int i=first_x1;i<first_x2;i++){
-            boolean ySequence=true;
             int tmpLengthY=0;
             for(int j=first_y1;j<first_y2;j++){
                 if(map[j][i]==1){
                     tmpLengthY++;
-                    if(!ySequence){
-                        tmpLengthY = maxY;
-                        break;
-                    }                    
+                    if(sign == -1){
+                        signCount++;
+                    }
+                    sign=1;
                 }
                 if(map[j][i]==2){
-                    ySequence = false;
+                    if(sign == 1){
+                        signCount++;
+                    }
+                    sign=-1;
                 }
             }
-            answerY = Math.max(answerY, tmpLengthY);
+            if(signCount >=2) answerY = maxY;
+            else answerY = Math.max(answerY, tmpLengthY);
         }
         int answer = (answerX)*(answerY);
         System.out.println(answer);
