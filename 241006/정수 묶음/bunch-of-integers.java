@@ -2,44 +2,56 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int[] num;
-    static int m;
-    static int answer = Integer.MIN_VALUE;
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
+
+        // 입력 처리
         int n = Integer.parseInt(br.readLine());
-        num = new int[n];
-        int[] visited = new int[n];
+        int[] num = new int[n];
         st = new StringTokenizer(br.readLine());
-        for(int i=0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             num[i] = Integer.parseInt(st.nextToken());
         }
-        m = Integer.parseInt(br.readLine());
-        group(0, 0, visited);
-        System.out.println(answer);
+        int m = Integer.parseInt(br.readLine());
 
-    }
-    public static void group(int Idx, int count, int[] visited){
-        if(count ==3){
-            int numSum=0;
-            for(int i=0;i<visited.length;i++){
-                if(visited[i]==1){
-                    numSum += num[i];
+        // 부분합 계산 (슬라이딩 윈도우)
+        int[] sum = new int[n - m + 1];
+        int currentSum = 0;
+        for (int i = 0; i < m; i++) {
+            currentSum += num[i];
+        }
+        sum[0] = currentSum;
+        for (int i = 1; i <= n - m; i++) {
+            currentSum = currentSum - num[i - 1] + num[i + m - 1];
+            sum[i] = currentSum;
+        }
+
+        // DP 테이블
+        int[][] dp = new int[4][n - m + 1];
+
+        // DP 초기값 세팅
+        for (int i = 1; i <= 3; i++) {
+            for (int j = (i - 1) * m; j <= n - m; j++) {
+                if (i == 1) {
+                    // 첫 번째 상자일 때는 j > 0인 경우만 dp[i][j-1]과 비교
+                    if (j > 0) {
+                        dp[i][j] = Math.max(dp[i][j - 1], sum[j]);
+                    } else {
+                        dp[i][j] = sum[j]; // j == 0일 때는 sum[0]을 그대로 사용
+                    }
+                } else if (j >= m) {
+                    // 두 번째 상자부터는 겹치지 않는 이전 상자의 최대 합과 비교
+                    if (j > 0) {
+                        dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j - m] + sum[j]);
+                    } else {
+                        dp[i][j] = dp[i - 1][j - m] + sum[j];
+                    }
                 }
             }
-            answer = Math.max(answer, numSum);            
         }
-        for(int i=Idx;i<visited.length-m+1;i++){
-            for(int j=i;j<i+m;j++){
-                if(visited[j]==1) continue;
-                visited[j] =1;
-            }
-            group(Idx+m,count+1,visited);
-            for(int j=i;j<i+m;j++){
-                visited[j] =0;
-            }
-            
-        }
+
+        // 최종 출력
+        System.out.println(dp[3][n - m]);
     }
 }
