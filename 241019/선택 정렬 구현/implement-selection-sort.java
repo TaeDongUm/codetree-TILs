@@ -19,7 +19,7 @@ public class Main {
                     min = j;
                 }
             }
-$0
+
             int tmp = numArr[i];
             numArr[i] = numArr[min];
             numArr[min] = tmp;
