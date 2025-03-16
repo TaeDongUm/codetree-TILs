@@ -12,7 +12,15 @@ public class Main {
                 grid[i][j] = sc.nextInt();
         
         // Please write your code here.
-        int answer = gridRowCount(grid, m) + gridColCount(grid, m);
+        int answer=0;
+        if(n==1 && m==1){            
+            answer =1;
+            
+        }
+        if(n!=1){
+            answer = gridRowCount(grid, m) + gridColCount(grid, m);
+        }
+        
         System.out.println(answer);
     }
 
