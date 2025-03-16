@@ -14,7 +14,7 @@ public class Main {
         // Please write your code here.
         int answer=0;
         if(n==1 && m==1){            
-            answer =1;
+            answer =2;
             
         }
         if(n!=1){
