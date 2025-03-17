@@ -18,10 +18,10 @@ public class Main {
         System.out.println(answer);
     }
 
-    public static void countingSumRightAngle(int[][] grid){
-        int numberSum=0;
+    public static void countingSumRightAngle(int[][] grid){        
         for(int i=0;i<=grid.length-2;i++){
-            for(int j=0;j<=grid.length-2;j++){
+            for(int j=0;j<=grid[i].length-2;j++){
+                int numberSum=0;
                 numberSum+=grid[i][j] + grid[i][j+1] + grid[i+1][j] + grid[i+1][j+1];
                 for(int m=i;m<=i+1;m++){
                     for(int n=j;n<=j+1;n++){
@@ -29,8 +29,7 @@ public class Main {
                         answer = numberSum - grid[m][n];
                         }
                     }
-                }
-                numberSum=0;
+                }                
             }
         }
 
