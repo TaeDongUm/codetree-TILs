@@ -43,7 +43,7 @@ public class Main {
                 if(answer < tmpSum) answer = tmpSum;                
             }
         }
-        for(int j=0;j<grid.length;j++){
+        for(int j=0;j<grid[0].length;j++){
             for(int i=0;i<=grid.length-3;i++){
                 int tmpSum =0;
                 tmpSum += grid[i][j] + grid[i+1][j] + grid[i+2][j];
