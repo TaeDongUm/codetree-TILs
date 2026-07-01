@@ -21,7 +21,8 @@ public class Main {
             for(int j=ax1; j<ax2;j++) {
 
                 for(int k=ay1; k<ay2; k++) {
-                    coordinate[j][k] = 1;                
+                    coordinate[j][k] = 1;       
+                    area++;         
                 }
             }
         }
@@ -36,17 +37,20 @@ public class Main {
         for(int i=ax1; i<ax2; i++) {
 
             for(int j=ay1;j<ay2;j++) {
-                coordinate[i][j] = 0;
+                if(coordinate[i][j]==1) {
+                    area--;
+                }
+
             }
         }
 
-        for(int i=0;i<2001;i++) {
-            for(int j=0;j<2001;j++) {
-                if(coordinate[i][j]==1) {
-                    area++;
-                }
-            }
-        }
+        // for(int i=0;i<2001;i++) {
+        //     for(int j=0;j<2001;j++) {
+        //         if(coordinate[i][j]==1) {
+        //             area++;
+        //         }
+        //     }
+        // }
 
         System.out.println(area);
 
